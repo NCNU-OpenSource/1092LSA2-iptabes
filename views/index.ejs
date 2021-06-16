@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><% var name= "iptables" %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= name %></h1>
+    <p>Welcome to iptables rule generator</p>
+    <script src='/javascripts/form.js'></script>
+    <form>
+      <select id="ActionToRule">
+        <option>Add</option>
+        <option>Insert</option>
+        <option>Delete</option>
+        <option>Revise</option>
+        <!-- 缺 修改 -R -->
+      </select>
+      <select id="chain">
+        <option>input</option>
+        <option>output</option>
+        <option>forward</option>
+      </select>
+      <select id="protocal">
+        <option>tcp</option>
+        <option>udp</option>
+        <option>icmp</option>
+      </select>
+      <input id="src" type="text" placeholder="src: 192.168.0.0/24">
+      <input id="dest" type="text" placeholder="dest: 192.168.100.0/24">
+      <select id="action">
+        <option>accept</option>
+        <option>drop</option>
+        <option>reject</option>
+      </select>
+      <input type="submit" value="ok" id="submet" onclick='GetFormData()'>
+    </form>
+  </body>
+</html>
