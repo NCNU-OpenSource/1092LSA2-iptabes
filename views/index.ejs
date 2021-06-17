@@ -8,19 +8,28 @@
     <h1><%= name %></h1>
     <p>Welcome to iptables rule generator</p>
     <script src='/javascripts/form.js'></script>
-    <form>
-      <select id="ActionToRule">
+    <p>
+      <select id="ActionToRule" onchange="action()">
+        <option>choose action</option>
+        <option>Show iptables</option>
         <option>Add</option>
         <option>Insert</option>
         <option>Delete</option>
-        <option>Revise</option>
-        <!-- 缺 修改 -R -->
+        <!-- <option>Insert</option>
+        <option>Revise</option> -->
+      </select>
+      <select id="table">
+        <option>choose table</option>
+        <option>nat</option>
+        <option>filter</option>
       </select>
       <select id="chain">
+        <option>choose chain</option>
         <option>input</option>
         <option>output</option>
         <option>forward</option>
       </select>
+      <input id="rule_number" type="number" placeholder="rule number">
       <select id="protocal">
         <option>tcp</option>
         <option>udp</option>
@@ -34,6 +43,8 @@
         <option>reject</option>
       </select>
       <input type="submit" value="ok" id="submet" onclick='GetFormData()'>
-    </form>
+    </p>
+    <h2>command</h2>
+    <p id="output"></p>
   </body>
 </html>
