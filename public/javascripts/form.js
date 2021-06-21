@@ -49,9 +49,8 @@ function GetBasicData() {
     }
 }
 function action() {
-    var ActionToRule = document.getElementById("ActionToRule");
-    if (ActionToRule.value == "Add") {
-        document.getElementById("table").style.display="none";
+    var ActionToRule = document.getElementById("ActionToRule").value;
+    if (ActionToRule == "Add") {
         document.getElementById("rule_number").style.display="none";
         document.getElementById("chain").style.display="inline";
         document.getElementById("protocal").style.display="inline";
@@ -60,9 +59,8 @@ function action() {
         document.getElementById("src").style.display="inline";
         document.getElementById("dest").style.display="inline";
         document.getElementById("action").style.display="inline";
-    }else if (ActionToRule.value == "Delete") {
+    }else if (ActionToRule == "Delete") {
         alert("請先確認 iptables 的內容 (可以使用 Show iptables 確認)");
-        document.getElementById("table").style.display="none";
         document.getElementById("chain").style.display="inline";
         document.getElementById("protocal").style.display="none";
         document.getElementById("sport").style.display="none";
@@ -71,9 +69,8 @@ function action() {
         document.getElementById("dest").style.display="none";
         document.getElementById("action").style.display="none";
         document.getElementById("rule_number").style.display="inline";
-    }else if (ActionToRule.value == "Insert") {
+    }else { //insert
         alert("請先確認 iptables 的內容~ (可以使用 Show iptables 確認)");
-        document.getElementById("table").style.display="none";
         document.getElementById("rule_number").style.display="inline";
         document.getElementById("chain").style.display="inline";
         document.getElementById("protocal").style.display="inline";
@@ -82,16 +79,6 @@ function action() {
         document.getElementById("src").style.display="inline";
         document.getElementById("dest").style.display="inline";
         document.getElementById("action").style.display="inline";
-    }else {
-        document.getElementById("table").style.display="inline";
-        document.getElementById("chain").style.display="none";
-        document.getElementById("rule_number").style.display="none";
-        document.getElementById("protocal").style.display="none";
-        document.getElementById("sport").style.display="none";
-        document.getElementById("dport").style.display="none";
-        document.getElementById("src").style.display="none";
-        document.getElementById("dest").style.display="none";
-        document.getElementById("action").style.display="none";
     }
 }
 
