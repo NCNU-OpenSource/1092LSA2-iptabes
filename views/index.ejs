@@ -8,43 +8,71 @@
     <h1><%= name %></h1>
     <p>Welcome to iptables rule generator</p>
     <script src='/javascripts/form.js'></script>
+    <h2>Basic Command</h2>
+    <p>
+      <select id="BasicCommand" onchange="ActionForBasic()">
+        <option disabled>--Action--</option>
+        <option>Change Policy</option> 
+        <option>Show IPtables</option>
+        <option>Delete all rules</option>
+        <option>Delete user-specified rules</option>     
+      </select>
+      <select id="tableB">
+        <option disabled>--choose table--</option>
+        <option>all tables</option>
+        <option>nat</option>
+        <option selected>filter</option>
+      </select>
+      <select id="chainB">
+        <option disabled>--choose chain--</option>
+        <option>INPUT</option>
+        <option>OUTPUT</option>
+        <option>FORWARD</option>
+      </select>
+      <select id="actionB">
+        <option>ACCEPT</option>
+        <option>DROP</option>
+      </select>
+      <input type="submit" value="ok" id="submetB" onclick='GetBasicData()'>
+    </p>
+    <div style="border: lightseagreen dashed 3px;">
+    <h3>command</h3>
+    <p id="output"></p>
+    &nbsp;
+    </div>
+    &nbsp;
+    <h2>Rule</h2>
     <p>
       <select id="ActionToRule" onchange="action()">
-        <option>choose action</option>
-        <option>Show iptables</option>
-        <option>Add</option>
+        <option disabled>--choose action--</option>
         <option>Insert</option>
+        <option>Add</option>
         <option>Delete</option>
-        <!-- <option>Insert</option>
-        <option>Revise</option> -->
-      </select>
-      <select id="table">
-        <option>choose table</option>
-        <option>nat</option>
-        <option>filter</option>
       </select>
       <select id="chain">
-        <option>choose chain</option>
-        <option>input</option>
-        <option>output</option>
-        <option>forward</option>
+        <option disabled>--choose chain--</option>
+        <option>INPUT</option>
+        <option>OUTPUT</option>
+        <option>FORWARD</option>
       </select>
-      <input id="rule_number" type="number" placeholder="rule number">
-      <select id="protocal">
-        <option>tcp</option>
-        <option>udp</option>
-        <option>icmp</option>
-      </select>
-      <input id="src" type="text" placeholder="src: 192.168.0.0/24">
-      <input id="dest" type="text" placeholder="dest: 192.168.100.0/24">
+      <input id="rule_number" type="number" min="1" style="width: 40px;" placeholder="No.">
+      <input id="protocal" type="text" style="width: 70px;" placeholder="protocal">
+      <input id="sport" type="text" style="width: 50px;" placeholder="sport">
+      <input id="src" type="text" placeholder="src: 192.168.0.0">
+      <input id="dest" type="text" placeholder="dest: 192.168.100.0">
+      <input id="dport" type="text" style="width: 50px;" placeholder="dport">
       <select id="action">
-        <option>accept</option>
-        <option>drop</option>
-        <option>reject</option>
+        <option>ACCEPT</option>
+        <option>DROP</option>
+        <option>REJECT</option>
       </select>
       <input type="submit" value="ok" id="submet" onclick='GetFormData()'>
     </p>
-    <h2>command</h2>
-    <p id="output"></p>
+    <div style="border: lightseagreen dashed 3px;">
+    <h3>command</h3>
+    <p id="output2"></p>
+    &nbsp;
+    </div>
+    &nbsp;
   </body>
 </html>
