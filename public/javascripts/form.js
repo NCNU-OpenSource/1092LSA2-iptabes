@@ -81,7 +81,6 @@ function action() {
         document.getElementById("action").style.display="inline";
     }
 }
-
 function GetFormData() {
     var ActionToRule = document.getElementById("ActionToRule").value;
     var chain = document.getElementById("chain").value;
@@ -152,4 +151,19 @@ function GetFormData() {
     }
 }
 
+// 加 rule 到圖像化框框
+function GetPictureData() {
+    var p = document.getElementById("output2").innerHTML;
+    var l = document.getElementById("CommandForPicture");
+    if (l.innerHTML == "") {
+        l.innerHTML = p;
+    } else {
+    l.innerHTML = l.innerHTML + "<br/>" + p;
+    }
+}
 
+// 一鍵複製
+function copy(id) {
+	window.getSelection().selectAllChildren(id);
+	document.execCommand("Copy");
+}

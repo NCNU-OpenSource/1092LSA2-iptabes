@@ -38,7 +38,7 @@
     <div style="border: lightseagreen dashed 3px;">
     <h3>command</h3>
     <p id="output"></p>
-    &nbsp;
+    <p><button onclick="copy(output)">copy</button></p>
     </div>
     &nbsp;
     <h2>Rule</h2>
@@ -71,8 +71,16 @@
     <div style="border: lightseagreen dashed 3px;">
     <h3>command</h3>
     <p id="output2"></p>
-    &nbsp;
+    <p><button onclick="copy(output2)">copy</button> <input id="ForPicture" type="submit" value="Add to Visualization" onclick="GetPictureData()"></p>
     </div>
-    &nbsp;
+    <h2>Visualization</h2>
+    <div style="float: left; border: lightseagreen dashed 3px; width: 35%; margin-top:20px;">
+      <h3>Input for Visualization</h3>
+      <p id="CommandForPicture"></p>
+      <p><button onclick="copy(CommandForPicture)">copy</button></p>
+    </div>
+    <div style="float: right; border: lightseagreen dashed 3px; width: 60%; margin-top: 20px;">
+      <h3>Visualization</h3>
+    </div>
   </body>
 </html>
