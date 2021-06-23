@@ -1,2 +1,18 @@
-# 1092LSA2-iptabes
-iptables rule generator
+# iptabes rule generator
+## 簡介
+這是一個 iptabes rule generator web，可以讓對 iptables 使用方法不熟悉的人，透過簡單的下拉選單及填空的方式，得到對應的指令。
+為了幫助不太了解相關流程的使用者，我們加了針對 accept 規則的圖像化呈現，讓使用者可以對規則的相關邏輯更加了解。
+## 環境安裝 & 啟動
+* [安裝 Node.js](https://nodejs.org/zh-tw/download/)
+* 打開 CMD 輸入 `npm stert`
+* 打該瀏覽器輸入 localhost:3000
+## 功能與使用
+* 此網站分三個部分 : 
+    * 基本指令 : 列出、清空 iptable 及修改 Policy
+    * 規則 : 新增、刪除、插入規則
+    * 圖像化 : 將規則圖像化呈現
+* 使用 : 
+    * 針對需要了解的指令，透過下拉選單及填入的方式做輸入，得到相關指令
+    * ps : 空格僅代表可能需要的條件，依需求填寫即可，不需要全部寫滿
+    * 刪除及插入指令需要填入規則行數，為避免刪錯或放錯位置，建議先查看自己的 iptables 做確認喔！
+## 畫面預覽
