@@ -1,3 +1,4 @@
+// basic command 顯示
 function ActionForBasic() {
     var BasicCommand = document.getElementById("BasicCommand");
     if (BasicCommand.value == "Show IPtables") {
@@ -18,6 +19,8 @@ function ActionForBasic() {
         document.getElementById("actionB").style.display="inline";
     }
 }
+
+// 處理 basic command 
 function GetBasicData() {
     var BasicCommand = document.getElementById("BasicCommand").value;
     var chainB = document.getElementById("chainB").value;
@@ -30,7 +33,7 @@ function GetBasicData() {
         tableB = " -t " + tableB;
     }
     // 判斷 add/delete/insert/show
-    if (BasicCommand == "Show iptables") { 
+    if (BasicCommand == "Show IPtables") { 
         BasicCommand = "-L";
         var p = document.getElementById("output");
         p.innerHTML = "iptables " + tableB + " " + BasicCommand;
@@ -48,10 +51,21 @@ function GetBasicData() {
         p.innerHTML = "iptables" + tableB + " " + BasicCommand + " " + chainB + " " + actionB;  
     }
 }
+
+// rule 顯示
 function action() {
     var ActionToRule = document.getElementById("ActionToRule").value;
+    document.getElementById("rule_number").style.display="none";
+    document.getElementById("chain").style.display="none";
+    document.getElementById("protocal").style.display="none";
+    document.getElementById("sport").style.display="none";
+    document.getElementById("dport").style.display="none";       
+    document.getElementById("src").style.display="none";
+    document.getElementById("dest").style.display="none";
+    document.getElementById("action").style.display="none";
+    document.getElementById("IncomingInterface").style.display="none";
+    document.getElementById("OutgoingInterface").style.display="none";
     if (ActionToRule == "Add") {
-        document.getElementById("rule_number").style.display="none";
         document.getElementById("chain").style.display="inline";
         document.getElementById("protocal").style.display="inline";
         document.getElementById("sport").style.display="inline";
@@ -59,15 +73,11 @@ function action() {
         document.getElementById("src").style.display="inline";
         document.getElementById("dest").style.display="inline";
         document.getElementById("action").style.display="inline";
+        document.getElementById("IncomingInterface").style.display="inline";
+        document.getElementById("OutgoingInterface").style.display="inline";
     }else if (ActionToRule == "Delete") {
         alert("請先確認 iptables 的內容 (可以使用 Show iptables 確認)");
         document.getElementById("chain").style.display="inline";
-        document.getElementById("protocal").style.display="none";
-        document.getElementById("sport").style.display="none";
-        document.getElementById("dport").style.display="none";
-        document.getElementById("src").style.display="none";
-        document.getElementById("dest").style.display="none";
-        document.getElementById("action").style.display="none";
         document.getElementById("rule_number").style.display="inline";
     }else { //insert
         alert("請先確認 iptables 的內容~ (可以使用 Show iptables 確認)");
@@ -79,8 +89,12 @@ function action() {
         document.getElementById("src").style.display="inline";
         document.getElementById("dest").style.display="inline";
         document.getElementById("action").style.display="inline";
+        document.getElementById("IncomingInterface").style.display="inline";
+        document.getElementById("OutgoingInterface").style.display="inline";
     }
 }
+
+// 處理 rule
 function GetFormData() {
     var ActionToRule = document.getElementById("ActionToRule").value;
     var chain = document.getElementById("chain").value;
@@ -91,6 +105,8 @@ function GetFormData() {
     var action = document.getElementById("action").value;
     var sport = document.getElementById("sport").value;
     var dport = document.getElementById("dport").value;
+    var OutgoingInterface = document.getElementById("OutgoingInterface").value;
+    var IncomingInterface = document.getElementById("IncomingInterface").value;
 
     // 判斷&處理 sport&dport
     if (sport == "") {
@@ -123,31 +139,38 @@ function GetFormData() {
     if (src == "") {
         src = " ";
     } else {
-        src = " -i " + src;
+        src = " -s " + src;
     }
     // 判斷&處理 dest
     if (dest == "") {
         dest = " ";
     } else {
-        dest = " -o " + dest;
+        dest = " -d " + dest;
+    }
+    // 判斷&處理 interface
+    if (IncomingInterface == "") {
+        IncomingInterface = " ";
+    } else {
+        IncomingInterface = " -i " + IncomingInterface;
+    }
+    if (OutgoingInterface == "") {
+        OutgoingInterface = " ";
+    } else {
+        OutgoingInterface = " -o " + OutgoingInterface;
     }
     // 判斷 add/delete/insert
     if (ActionToRule == "Add") { 
         ActionToRule = "-A";
         var p = document.getElementById("output2");
-        p.innerHTML = "iptables " + ActionToRule + " " + chain + protocal + src + sport + dest + dport + " -j " + action; 
+        p.innerHTML = "iptables " + ActionToRule + " " + chain + protocal + IncomingInterface + src + sport + OutgoingInterface + dest + dport + " -j " + action; 
     }else if (ActionToRule == "Insert") { 
         ActionToRule = "-I";
         var p = document.getElementById("output2");
-        p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber + protocal + src + sport + dest + dport + " -j " + action; 
-    }else if (ActionToRule == "Delete") { 
+        p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber + protocal + IncomingInterface + src + sport + OutgoingInterface + dest + dport + " -j " + action; 
+    }else {// delete 
         ActionToRule = "-D";
         var p = document.getElementById("output2");
         p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber;  
-    }else { 
-        ActionToRule = "-L"
-        var p = document.getElementById("output2");
-        p.innerHTML = "iptables" + " -t " + table + " " + ActionToRule;  
     }
 }
 
