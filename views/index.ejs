@@ -2,49 +2,109 @@
 <html>
   <head>
     <title><% var name= "iptables" %></title>
+    <% include ./bootstrap/bootstrapCss.ejs %>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= name %></h1>
     <p>Welcome to iptables rule generator</p>
-    <script src='/javascripts/form.js'></script>
+    <h2>Basic Command</h2>
+    <p>
+      <select id="BasicCommand" onchange="ActionForBasic()">
+        <option disabled>--Action--</option>
+        <option>Change Policy</option> 
+        <option>Show IPtables</option>
+        <option>Delete all rules</option>
+        <option>Delete user-specified rules</option>     
+      </select>
+      <select id="tableB">
+        <option disabled>--choose table--</option>
+        <option>all tables</option>
+        <option>nat</option>
+        <option selected>filter</option>
+      </select>
+      <select id="chainB">
+        <option disabled>--choose chain--</option>
+        <option>INPUT</option>
+        <option>OUTPUT</option>
+        <option>FORWARD</option>
+      </select>
+      <select id="actionB">
+        <option>ACCEPT</option>
+        <option>DROP</option>
+      </select>
+      <input type="submit" value="ok" id="submetB" onclick='GetBasicData()'>
+    </p>
+    <div style="border: lightseagreen dashed 3px;">
+    <h3>command</h3>
+    <p id="output"></p>
+    <p><button onclick="copy(output)">copy</button></p>
+    </div>
+    &nbsp;
+    <h2>Rule</h2>
     <p>
       <select id="ActionToRule" onchange="action()">
-        <option>choose action</option>
-        <option>Show iptables</option>
-        <option>Add</option>
+        <option disabled>--choose action--</option>
         <option>Insert</option>
+        <option>Add</option>
         <option>Delete</option>
-        <!-- <option>Insert</option>
-        <option>Revise</option> -->
-      </select>
-      <select id="table">
-        <option>choose table</option>
-        <option>nat</option>
-        <option>filter</option>
       </select>
       <select id="chain">
-        <option>choose chain</option>
-        <option>input</option>
-        <option>output</option>
-        <option>forward</option>
+        <option disabled>--choose chain--</option>
+        <option>INPUT</option>
+        <option>OUTPUT</option>
+        <option>FORWARD</option>
       </select>
-      <input id="rule_number" type="number" placeholder="rule number">
-      <select id="protocal">
-        <option>tcp</option>
-        <option>udp</option>
-        <option>icmp</option>
-      </select>
-      <input id="src" type="text" placeholder="src: 192.168.0.0/24">
-      <input id="dest" type="text" placeholder="dest: 192.168.100.0/24">
+      <input id="rule_number" type="number" min="1" style="width: 40px;" placeholder="No.">
+      <input id="protocal" type="text" style="width: 70px;" placeholder="protocal">
+      <input id="sport" type="text" style="width: 50px;" placeholder="sport">
+      <input id="IncomingInterface" type="text" placeholder="incoming network interface">
+      <input id="src" type="text" placeholder="src: 192.168.0.0">
+      <input id="OutgoingInterface" type="text" placeholder="outgoing network interface">
+      <input id="dest" type="text" placeholder="dest: 192.168.100.0">
+      <input id="dport" type="text" style="width: 50px;" placeholder="dport">
       <select id="action">
-        <option>accept</option>
-        <option>drop</option>
-        <option>reject</option>
+        <option>ACCEPT</option>
+        <option>DROP</option>
+        <option>REJECT</option>
       </select>
       <input type="submit" value="ok" id="submet" onclick='GetFormData()'>
     </p>
-    <h2>command</h2>
-    <p id="output"></p>
+    <div style="border: lightseagreen dashed 3px;">
+    <h3>command</h3>
+    <p id="output2"></p>
+    <p><button onclick="copy(output2)">copy</button> <input id="ForPicture" type="submit" value="Add to Visualization" onclick="GetPictureData()"></p>
+    </div>
+    <h2>Visualization</h2>
+    <div style="float: left; border: lightseagreen dashed 3px; width: 35%; margin-top:20px;" class="pb-2">
+      <h3>Input for Visualization</h3>
+      <p id="CommandForPicture"></p>
+      <div class = "row">
+        <!-- <div class = "col-1"></div> -->
+        <div class = "col-3 ml-3"><button onclick="copy(CommandForPicture)">copy</button></div>
+        <div class = "col-1"></div>
+        <div class = "col-3"><button onclick="clean()">clean</button></div>
+        <div class = "col-1"></div>
+        <div class = "col-3"><button onclick="getDrawInfo()">draw</button></div>
+      </div>
+    </div>
+    <div class = "pb-2 mb-2" style="float: right; border: lightseagreen dashed 3px; width: 60%; margin-top: 20px;">
+      <h3>Visualization</h3>
+      <div class = "row">
+        <div class = "col-1"></div>
+        <h5 id = "inputAccept" class = "col-4">INPUT accept</h5>
+        <h5 id = "drop" class = "col-3">drop/reject</h5>
+        <h5 id = "forwardAccept">FORWARD accept</h5>
+      </div>
+      <div class = "row">
+        <div class = "col-1"></div>
+        <div id="cy" class="col-10 w-75 p-3 mb-2" style="background-color: #eee;"></div>
+      </div>
+    </div>
+    <% include cytoscape.ejs %>
+    <% include ./bootstrap/bootstrapJs.ejs %>
+    <script src='/javascripts/form.js'></script>
+    <script src='/javascripts/getdraw.js'></script>
+    <script src='/javascripts/draw.js'></script>
   </body>
 </html>

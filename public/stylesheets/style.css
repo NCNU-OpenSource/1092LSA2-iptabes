@@ -1,8 +1,38 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  background-color: rgb(201, 228, 245);
+}
+
+h2 {
+  /* border-top: solid skyblue 2px; */
+  border-bottom: solid navy 4px;
+}
+
+#cy {
+  height: 500px;
+  text-align:justify;
+}
+
+#inputAccept{
+  color: #7A7A7A;
+  text-align:left;
+}
+
+#drop{
+  color: #E00000;
+  text-align:left;
+}
+
+#forwardAccept{
+  color: #00B7FF;
+  text-align:left;
 }
