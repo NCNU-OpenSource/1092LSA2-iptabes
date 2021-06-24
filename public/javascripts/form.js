@@ -171,6 +171,7 @@ function GetFormData() {
         ActionToRule = "-D";
         var p = document.getElementById("output2");
         p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber;  
+<<<<<<< HEAD
     }
 }
 
