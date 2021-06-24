@@ -27,4 +27,6 @@
     * 圖像化的部分目前僅供 INPUT 和 F 使用
 ## 畫面預覽
 ![image](https://user-images.githubusercontent.com/40049920/123203732-5f85ba00-d4e9-11eb-84cd-529fe1ce3237.png)
-
+## 工作分配
+- 蔣毓庭 : 指令圖像化呈現、修了非常一丟丟的頁面格式
+- 葉依玲 : 網頁剩下全部
