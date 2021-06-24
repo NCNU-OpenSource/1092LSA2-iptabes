@@ -170,8 +170,7 @@ function GetFormData() {
     }else {// delete 
         ActionToRule = "-D";
         var p = document.getElementById("output2");
-        p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber;  
-<<<<<<< HEAD
+        p.innerHTML = "iptables " + ActionToRule + " " + chain + " " + RuleNumber;
     }
 }
 
