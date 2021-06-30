@@ -176,13 +176,23 @@ function GetFormData() {
 
 // 加 rule 到圖像化框框
 function GetPictureData() {
-    var p = document.getElementById("output2").innerHTML;
-    var l = document.getElementById("CommandForPicture");
-    if (l.innerHTML == "") {
-        l.innerHTML = p;
-    } else {
-    l.innerHTML = l.innerHTML + "<br/>" + p;
-    }
+    var data = document.getElementById("output2");
+    var li = document.createElement("li"); 
+    var txtNode = document.createTextNode(data.innerHTML); 
+    li.appendChild(txtNode); 
+    
+    // delete button
+    var deleteButton = document.createElement("input");
+    deleteButton.type = "button";
+    deleteButton.className = "button";
+    deleteButton.value = "Delete";
+    deleteButton.onclick = function() {
+        deleteButton.parentNode.remove();
+    };
+    li.appendChild(deleteButton);
+
+    var put = document.getElementById("CommandForPicture"); 
+    put.appendChild(li); 
 }
 
 // 一鍵複製
