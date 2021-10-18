@@ -1,4 +1,4 @@
-# iptabes rule generator
+# iptables rule generator
 ## 簡介
 這是一個 iptabes rule generator web，可以讓對 iptables 使用方法不熟悉的人，透過簡單的下拉選單及填空的方式，得到對應的指令。
 為了幫助不太了解相關流程的使用者，我們加了針對 INPUT 的圖像化呈現，讓使用者可以對規則的相關邏輯更加了解。
